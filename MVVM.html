@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>百度前端大作业二</title>
+</head>
+
+<body>
+<div id="app">
+    <div v-html="message"></div>
+    作者信息：
+    <input class="input" type="text" v-model="author.name">
+    <button v-on:click="clickBtn">改变文本框内容</button>
+    <p>{{author.name}}</p>
+    <p>{{author.github}}</p>
+    {{getAuthor}}
+</div>
+
+<script type="module">
+    import { MVVM } from "./js/MVVM.js"
+    let vm = new MVVM({//新建mvvm对象，属性有el和data
+        el: '#app',
+        data: {
+            author: {
+                name:'lyx',
+                github:'https://github.com/lyxx2535'
+            },
+            message:'<h1>百度前端大作业：mvvm框架</h1>'
+        },
+        computed: {
+            getAuthor:function(){
+                return this.author.name + "-" + this.author.github;
+            }
+        },
+        methods: {
+            clickBtn: function(e) {
+                this.author.name = "lyxClickBtn"
+            }
+        }
+    })
+</script>
+</body>
+
+</html>
